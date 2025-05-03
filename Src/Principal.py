@@ -23,7 +23,7 @@ def cadastrar_participantes():
     return participantes
 
 def main():
-    print("FASE 1 - Votação (Two Phase Commit)")
+    
     participantes = cadastrar_participantes()
     coordenador = Coordenador(participantes)
     votos = coordenador.iniciar_votacao()
