@@ -3,21 +3,17 @@ class Coordenador:
         self.participantes = participantes
 
     def iniciar_votacao(self):
-        print("\n[Coordenador] Enviando solicitação de preparação para COMMIT...\n")
         votos = {}
-
         for participante in self.participantes:
             voto = participante.votar()
             votos[participante.nome] = voto
-
-        print("\n[Coordenador] Todos os votos foram recebidos.")
         return votos
 
     def decidir_transacao(self, votos):
-        if all(voto == "sim" for voto in votos.values()):
-            print("\n[DECISÃO FINAL] Todos votaram 'sim'. Transação será CONFIRMADA (COMMIT).")
-            return "COMMIT"
+        if all(voto == 'sim' for voto in votos.values()):
+            mensagem = "Transação realizada com sucesso!"
+            for participante in self.participantes:
+                participante.escrever_em_arquivo(mensagem)
+            return "COMMIT - Todos os arquivos foram atualizados com a transação."
         else:
-            print("\n[DECISÃO FINAL] Algum participante votou 'não'. Transação será CANCELADA (ABORT).")
-            return "ABORT"
-
+            return "ABORT - Pelo menos um voto foi 'nao', nenhum arquivo foi alterado."
