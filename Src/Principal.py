@@ -23,14 +23,18 @@ def cadastrar_participantes():
     return participantes
 
 def main():
-    
+    print("==== FASE 1 - Votação (Two Phase Commit) ====")
     participantes = cadastrar_participantes()
     coordenador = Coordenador(participantes)
     votos = coordenador.iniciar_votacao()
 
-    print("\n RESUMO DOS VOTOS")
+    print("\n===== RESUMO DOS VOTOS =====")
     for nome, voto in votos.items():
         print(f"{nome} votou: {voto.upper()}")
+
+    print("\n[Fim da Fase de Votação] Iniciando Fase de Decisão...")
+    decisao_final = coordenador.decidir_transacao(votos)
+    print(f"\nResultado da transação: {decisao_final}")
 
 if __name__ == "__main__":
     main()
