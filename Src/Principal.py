@@ -13,7 +13,7 @@ def main():
     mensagem = input("Digite a mensagem da transação que deseja realizar: ").strip()
 
     print("==== INÍCIO DA VOTAÇÃO ====\n")
-    print("📢 [Coordenador] Enviando solicitação de preparação para commit aos participantes...\n")
+    print("[Coordenador] Enviando solicitação de preparação para commit aos participantes...\n")
 
     votos = coordenador.iniciar_votacao()
 
