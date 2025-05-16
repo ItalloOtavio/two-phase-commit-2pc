@@ -9,9 +9,8 @@ class Coordenador:
             votos[participante.nome] = voto
         return votos
 
-    def decidir_transacao(self, votos):
+    def decidir_transacao(self, votos, mensagem):
         if all(voto == 'sim' for voto in votos.values()):
-            mensagem = "Transação realizada com sucesso!"
             for participante in self.participantes:
                 participante.escrever_em_arquivo(mensagem)
             return "COMMIT - Todos os arquivos foram atualizados com a transação."

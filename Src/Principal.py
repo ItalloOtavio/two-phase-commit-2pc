@@ -1,31 +1,20 @@
 from Participante import Participante
 from Coordenador import Coordenador
 
-def cadastrar_participantes():
-    participantes = []
-    quantidade_valida = False
-
-    while not quantidade_valida:
-        entrada = input("Quantos participantes deseja cadastrar? ")
-        if entrada.isdigit():
-            quantidade = int(entrada)
-            if quantidade > 0:
-                quantidade_valida = True
-            else:
-                print("Por favor, digite um número maior que zero.")
-        else:
-            print("Entrada inválida. Digite apenas números inteiros.")
-
-    for i in range(quantidade):
-        nome = input(f"Digite o nome do participante {i + 1}: ")
-        participantes.append(Participante(nome))
-
-    return participantes
-
 def main():
-    print("==== FASE 1 - Votação (Two Phase Commit) ====")
-    participantes = cadastrar_participantes()
+    print("==== SIMULADOR 2PC - Protocolo Two Phase Commit ====\n")
+
+    nomes_participantes = ["Participante 1", "Participante 2", "Participante 3"]
+    participantes = [Participante(nome) for nome in nomes_participantes]
+
     coordenador = Coordenador(participantes)
+
+
+    mensagem = input("Digite a mensagem da transação que deseja realizar: ").strip()
+
+    print("==== INÍCIO DA VOTAÇÃO ====\n")
+    print("📢 [Coordenador] Enviando solicitação de preparação para commit aos participantes...\n")
+
     votos = coordenador.iniciar_votacao()
 
     print("\n===== RESUMO DOS VOTOS =====")
@@ -33,8 +22,8 @@ def main():
         print(f"{nome} votou: {voto.upper()}")
 
     print("\n[Fim da Fase de Votação] Iniciando Fase de Decisão...")
-    decisao_final = coordenador.decidir_transacao(votos)
-    print(f"\nResultado da transação: {decisao_final}")
+    resultado = coordenador.decidir_transacao(votos, mensagem)
+    print(f"\nResultado da transação: {resultado}")
 
 if __name__ == "__main__":
     main()

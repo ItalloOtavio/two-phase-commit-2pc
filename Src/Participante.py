@@ -12,5 +12,5 @@ class Participante:
                 print("Entrada inválida. Digite 'sim' ou 'nao'.")
 
     def escrever_em_arquivo(self, mensagem):
-        with open(self.arquivo, 'a') as arquivo:
+        with open(self.arquivo, 'a') as arquivo: 
             arquivo.write(mensagem + '\n')
