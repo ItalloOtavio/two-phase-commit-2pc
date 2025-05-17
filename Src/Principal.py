@@ -1,20 +1,21 @@
-from Participante import Participante
 from Coordenador import Coordenador
+from log import escrever_log
 
 def main():
-    print("==== SIMULADOR 2PC - Protocolo Two Phase Commit ====\n")
+    print("==== SIMULADOR 2PC DISTRIBUÍDO ====\n")
 
-    coordenador_participante = Participante("Coordenador")
-    outros_participantes = [Participante("Participante 1"), Participante("Participante 2"), Participante("Participante 3")]
-
-    todos_participantes = [coordenador_participante] + outros_participantes
-    coordenador = Coordenador(todos_participantes)
-
+    participantes = [
+        ("Participante1", "localhost", 5001),
+        ("Participante2", "localhost", 5002),
+        ("Participante3", "localhost", 5003),
+    ]
 
     mensagem = input("Digite a mensagem da transação que deseja realizar: ").strip()
 
+    coordenador = Coordenador(participantes, mensagem)
+
     print("==== INÍCIO DA VOTAÇÃO ====\n")
-    print("[Coordenador] Enviando solicitação de preparação para commit aos participantes...\n")
+    escrever_log(f"[Coordenador] Iniciando votação para a transação: {mensagem}")
 
     votos = coordenador.iniciar_votacao()
 
@@ -23,8 +24,9 @@ def main():
         print(f"{nome} votou: {voto.upper()}")
 
     print("\n[Fim da Fase de Votação] Iniciando Fase de Decisão...")
-    resultado = coordenador.decidir_transacao(votos, mensagem)
+    resultado = coordenador.decidir_transacao(votos)
     print(f"\nResultado da transação: {resultado}")
+    escrever_log(f"Resultado da transação: {resultado}")
 
 if __name__ == "__main__":
     main()
