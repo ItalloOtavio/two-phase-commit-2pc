@@ -46,5 +46,6 @@ Todos os participantes estão simulados localmente via diferentes portas (ex: 50
 3. Digite a mensagem da transação quando solicitado.
 4. Verifique os arquivos dos participantes e os logs.
 
-📄 Licença
+##📄 Licença
+
 Este código foi desenvolvido para fins acadêmicos.
