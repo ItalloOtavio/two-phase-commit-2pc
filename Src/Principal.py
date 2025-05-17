@@ -4,10 +4,11 @@ from Coordenador import Coordenador
 def main():
     print("==== SIMULADOR 2PC - Protocolo Two Phase Commit ====\n")
 
-    nomes_participantes = ["Participante 1", "Participante 2", "Participante 3"]
-    participantes = [Participante(nome) for nome in nomes_participantes]
+    coordenador_participante = Participante("Coordenador")
+    outros_participantes = [Participante("Participante 1"), Participante("Participante 2"), Participante("Participante 3")]
 
-    coordenador = Coordenador(participantes)
+    todos_participantes = [coordenador_participante] + outros_participantes
+    coordenador = Coordenador(todos_participantes)
 
 
     mensagem = input("Digite a mensagem da transação que deseja realizar: ").strip()
