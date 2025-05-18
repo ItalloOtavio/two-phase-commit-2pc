@@ -1,5 +1,7 @@
 # Two Phase Commit (2PC)
 
+**INTEGRANTES:** Itallo Otavio e Manuela de Souza
+
 ## 📌 Tecnologias Utilizadas
 
 - Python 3.12+
