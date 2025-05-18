@@ -2,7 +2,7 @@ from Coordenador import Coordenador
 from log import escrever_log
 
 def main():
-    print("=== SIMULADOR 2PC DISTRIBUÍDO ===\n")
+    print("==== SIMULADOR 2PC DISTRIBUÍDO ====\n")
 
     participantes = [
         ("Participante1", "localhost", 5001),
