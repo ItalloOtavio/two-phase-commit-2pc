@@ -33,7 +33,7 @@ Todos os participantes estão simulados localmente via diferentes portas (ex: 50
 - Python 3 instalado
 - Terminal ou console
 
-### 2. Passos para Executar
+### 2. Passos para Executar em localhost
 
 1. **Abra 3 terminais** para iniciar os participantes:
    ```bash
@@ -45,6 +45,25 @@ Todos os participantes estão simulados localmente via diferentes portas (ex: 50
    python Src/Principal.py
 3. Digite a mensagem da transação quando solicitado.
 4. Verifique os arquivos dos participantes e os logs.
+
+### 3. Passos para Executar em infraestrutura física distribuída
+
+1. identificar o IP local de cada máquina participante.
+2. Ao iniciar o programa participante em cada máquina, deve-se passar o **IP real** daquela máquina e a **porta** na qual o participante irá escutar as conexões do coordenador:
+   ```bash
+   python participante.py <nome> <ip_da_maquina> <porta>
+3. No arquivo do coordenador **(principal.py)**, altere a lista de participantes para usar os IPs reais das máquinas:
+   ```bash
+   participantes = [
+    ("Participante1", "IP DA MAQUINA 1", 5001),
+    ("Participante2", "IP DA MAQUINA 2", 5002),
+    ("Participante3", "IP DA MAQUINA 3", 5003),
+   ]
+4. Execute o coordenador numa das máquinas com:
+   ```bash
+   python principal.py
+5. Garanta que as portas usadas estejam liberadas no firewall das máquinas para permitir a comunicação.
+6. A partir daí, o coordenador vai se comunicar com os participantes nos IPs e portas configurados, iniciando a votação e a transação.
 
 📄 Licença
 
